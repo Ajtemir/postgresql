@@ -1,0 +1,6 @@
+@ReplicationAndFailover_HostAddress = http://localhost:5248
+
+GET {{ReplicationAndFailover_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
