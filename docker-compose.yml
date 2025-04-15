@@ -48,6 +48,20 @@ services:
       - "5435:5432"
     networks:
       - pg_net
+  
+  haproxy:
+    image: haproxy:2.9
+    container_name: pg_haproxy
+    volumes:
+      - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    ports:
+      - "5436:5432"  # Expose this port for clients to connect
+    depends_on:
+      - primary
+      - replica1
+      - replica2
+    networks:
+      - pg_net
 
 volumes:
   pg_primary_data:
